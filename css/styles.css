@@ -1,0 +1,664 @@
+/* ============================================================
+   GlowSwan — Custom Styles
+   Luxury skincare soap website
+   Deep Plum + Gold theme
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. CSS Custom Properties (Color Tokens)
+   ------------------------------------------------------------ */
+:root {
+  --bg-deep-plum: #120A13;
+  --bg-plum-surface: #1A111E;
+  --bg-plum-elevated: #231725;
+  --gold-primary: #D4AF37;
+  --gold-light: #E6C594;
+  --gold-champagne: #F3E5AB;
+  --gold-dark: #997A15;
+  --text-primary: #F4F0F5;
+  --text-muted: #B3A4B5;
+  --accent-rose: #C47A7A;
+  --accent-green: #7A9E7E;
+  --accent-amber: #C5986B;
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 0.8s var(--ease-luxury);
+}
+
+/* ------------------------------------------------------------
+   2. Base / Reset
+   ------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-deep-plum);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Selection highlight */
+::selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: var(--text-primary);
+}
+
+::-moz-selection {
+  background: rgba(212, 175, 55, 0.35);
+  color: var(--text-primary);
+}
+
+/* Scrollbar — WebKit */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-deep-plum);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.25);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.45);
+}
+
+/* Scrollbar — Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(212, 175, 55, 0.25) var(--bg-deep-plum);
+}
+
+/* Focus ring — remove default, add custom gold ring */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--gold-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Links default */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Active nav link highlight */
+nav a.active {
+  color: var(--gold-primary) !important;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ------------------------------------------------------------
+   3. Gold Shimmer Text Effect
+   ------------------------------------------------------------ */
+.shimmer-gold {
+  background: linear-gradient(
+    135deg,
+    #F3E5AB 0%,
+    #D4AF37 30%,
+    #997A15 50%,
+    #D4AF37 70%,
+    #F3E5AB 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: goldShimmer 6s ease infinite;
+}
+
+@keyframes goldShimmer {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ------------------------------------------------------------
+   4. Frosted Glass Navigation
+   ------------------------------------------------------------ */
+#navbar.nav-scrolled,
+.nav-scrolled {
+  background: rgba(18, 10, 19, 0.92) !important;
+  backdrop-filter: blur(24px) saturate(1.8) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.8) !important;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7) !important;
+}
+
+/* ------------------------------------------------------------
+   5. Infinite Marquee
+   ------------------------------------------------------------ */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 25s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeScroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ------------------------------------------------------------
+   6. Product Card Effects
+   ------------------------------------------------------------ */
+.product-card {
+  background: var(--bg-plum-surface);
+  border: 1px solid rgba(212, 175, 55, 0.08);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  transition: transform var(--transition-slow),
+              border-color var(--transition-slow),
+              box-shadow var(--transition-slow);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+              0 0 30px rgba(212, 175, 55, 0.08);
+}
+
+/* ------------------------------------------------------------
+   7. Product Image Glow
+   ------------------------------------------------------------ */
+.product-glow {
+  position: relative;
+}
+
+.product-glow::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  height: 60%;
+  background: radial-gradient(
+    ellipse at center,
+    var(--glow-color, rgba(212, 175, 55, 0.15)) 0%,
+    transparent 70%
+  );
+  opacity: 0.4;
+  z-index: 0;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.product-card:hover .product-glow::after {
+  opacity: 0.7;
+}
+
+/* ------------------------------------------------------------
+   8. Luxury CTA Button
+   ------------------------------------------------------------ */
+.btn-luxury {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border: 1px solid var(--gold-primary);
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.5s var(--ease-luxury);
+}
+
+.btn-luxury::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.15), transparent);
+  transition: transform 0.7s var(--ease-luxury);
+}
+
+.btn-luxury:hover::before {
+  transform: translateX(200%);
+}
+
+.btn-luxury:hover {
+  background: rgba(212, 175, 55, 0.08);
+  border-color: var(--gold-light);
+  box-shadow: 0 0 25px rgba(212, 175, 55, 0.15);
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------
+   9. WhatsApp Button Variants
+   ------------------------------------------------------------ */
+
+/* Inline WhatsApp CTA */
+.btn-whatsapp {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 2rem;
+  border: 1px solid #25D366;
+  color: var(--text-primary);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: transparent;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.5s var(--ease-luxury);
+}
+
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(37, 211, 102, 0.15), rgba(212, 175, 55, 0.1), transparent);
+  transition: transform 0.7s var(--ease-luxury);
+}
+
+.btn-whatsapp:hover::before {
+  transform: translateX(200%);
+}
+
+.btn-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.1);
+  border-color: #25D366;
+  box-shadow: 0 0 25px rgba(37, 211, 102, 0.2),
+              0 0 15px rgba(212, 175, 55, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Floating WhatsApp Button */
+.btn-whatsapp-float {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #25D366;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  z-index: 1000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: whatsappPulse 2s ease-in-out infinite;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-whatsapp-float:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+
+.btn-whatsapp-float.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.8);
+}
+
+@keyframes whatsappPulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 30px rgba(37, 211, 102, 0.6),
+                0 0 0 10px rgba(37, 211, 102, 0.1);
+  }
+}
+
+.whatsapp-pulse {
+  animation: whatsappPulse 2s ease-in-out infinite;
+}
+
+/* ------------------------------------------------------------
+   10. FAQ Accordion
+   ------------------------------------------------------------ */
+.faq-item {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  overflow: hidden;
+}
+
+.faq-item summary {
+  cursor: pointer;
+  padding: 1.25rem 0;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  list-style: none;
+  transition: color 0.3s ease;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::marker {
+  display: none;
+}
+
+.faq-item[open] summary {
+  color: var(--gold-light);
+}
+
+.faq-item .faq-answer {
+  padding: 0 0 1.25rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+
+/* ------------------------------------------------------------
+   11. Hero Section Radial Glow
+   ------------------------------------------------------------ */
+.hero-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(26, 17, 30, 0.8) 0%,
+    rgba(18, 10, 19, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ------------------------------------------------------------
+   12. Order Steps Connecting Line
+   ------------------------------------------------------------ */
+.order-steps-line {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+  opacity: 0.3;
+  z-index: 0;
+}
+
+/* ------------------------------------------------------------
+   13. Benefit Pills / Badges
+   ------------------------------------------------------------ */
+.benefit-pill {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 100px;
+  font-size: 0.75rem;
+  color: var(--gold-light);
+  letter-spacing: 0.05em;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.product-card:hover .benefit-pill {
+  border-color: rgba(212, 175, 55, 0.4);
+  background: rgba(212, 175, 55, 0.05);
+}
+
+/* ------------------------------------------------------------
+   14. Section Divider
+   ------------------------------------------------------------ */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+  color: var(--gold-primary);
+  opacity: 0.4;
+}
+
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+}
+
+/* ------------------------------------------------------------
+   15. Mobile Navigation Overlay
+   ------------------------------------------------------------ */
+.mobile-nav {
+  position: fixed;
+  inset: 0;
+  background: rgba(18, 10, 19, 0.97);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.mobile-nav.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mobile-nav a {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.75rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  color: var(--gold-primary);
+}
+
+/* Mobile nav close button */
+.mobile-nav-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.mobile-nav-close:hover {
+  color: var(--gold-primary);
+}
+
+/* ------------------------------------------------------------
+   16. GSAP Initial State
+   ------------------------------------------------------------ */
+.gsap-hidden {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* ------------------------------------------------------------
+   17. Responsive Adjustments
+   ------------------------------------------------------------ */
+
+/* Small devices (up to 640px) */
+@media (max-width: 640px) {
+  /* Hero stacks vertically */
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* Smaller hero headline */
+  .hero-headline {
+    font-size: 2.25rem;
+    line-height: 1.2;
+  }
+
+  /* Product grid: 1 column */
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Order steps: vertical */
+  .order-steps {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .order-steps-line {
+    top: 10%;
+    bottom: 10%;
+    left: 50%;
+    right: auto;
+    width: 2px;
+    height: auto;
+    background: linear-gradient(180deg, transparent, var(--gold-primary), transparent);
+  }
+
+  /* Smaller floating WhatsApp button on mobile */
+  .btn-whatsapp-float {
+    width: 50px;
+    height: 50px;
+    bottom: 1.25rem;
+    right: 1.25rem;
+  }
+
+  /* Adjust section padding */
+  section {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Mobile nav links slightly smaller */
+  .mobile-nav a {
+    font-size: 1.5rem;
+  }
+
+  /* Marquee text smaller */
+  .marquee-track {
+    font-size: 0.75rem;
+  }
+}
+
+/* Tablet (641px to 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Product grid: 2 columns */
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  /* Hero adjustments */
+  .hero-headline {
+    font-size: 2.75rem;
+  }
+
+  .hero-content {
+    gap: 2rem;
+  }
+}
+
+/* Desktop (1025px+) */
+@media (min-width: 1025px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .hero-headline {
+    font-size: 3.5rem;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .marquee-track {
+    animation: none;
+  }
+
+  .gsap-hidden {
+    opacity: 1;
+    transform: none;
+  }
+}
