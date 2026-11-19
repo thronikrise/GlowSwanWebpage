@@ -117,59 +117,64 @@
 
   <main>
     <!-- ═══════════════════════════════════════════════════════════
-         2. HERO SECTION
+         2. HERO SECTION — GRANDEUR PRESENTATION
          ═══════════════════════════════════════════════════════════ -->
-    <section id="hero" class="relative min-h-[90vh] flex items-center overflow-hidden pt-24 pb-12 lg:pt-28 lg:pb-16">
+    <section id="hero" class="relative overflow-hidden pt-28 pb-14 lg:pt-32 lg:pb-16 flex flex-col items-center">
       <!-- Ambient Lighting Spotlights -->
-      <div class="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gold/5 rounded-full blur-[140px] pointer-events-none"></div>
-      <div class="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-[#3d1830]/35 rounded-full blur-[130px] pointer-events-none"></div>
+      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[550px] bg-gold/5 rounded-full blur-[150px] pointer-events-none"></div>
+      <div class="absolute top-2/3 right-1/4 w-[500px] h-[450px] bg-[#3d1830]/35 rounded-full blur-[140px] pointer-events-none"></div>
 
-      <div class="max-w-7xl mx-auto px-6 lg:px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
-        <!-- Text — 6 cols -->
-        <div class="lg:col-span-6 space-y-4" data-gsap="hero-text">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold/10 border border-gold/25">
-            <span class="w-1.5 h-1.5 rounded-full bg-gold animate-ping"></span>
-            <p class="hero-label text-[11px] md:text-xs tracking-[0.25em] text-gold-light font-medium uppercase">
-              Handcrafted Cold-Process Bathing Soaps
-            </p>
-          </div>
+      <!-- Grandeur Visual Showcase (Wide Hero Stage) -->
+      <div class="hero-image w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative mb-8 lg:mb-10 flex justify-center" data-gsap="hero-image">
+        <!-- Ambient radial glow behind the stage -->
+        <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div class="w-[95%] h-[95%] rounded-full bg-gradient-to-b from-gold/15 via-[#3d1830]/35 to-transparent blur-[120px]"></div>
+        </div>
+        
+        <div class="relative z-10 w-full flex justify-center">
+          <img
+            src="assets/images/grandeur-hero-wide.png"
+            alt="GlowSwan — Your Skin Harmony luxury cold-process soap collection staged on travertine stone plinths"
+            class="w-full h-auto max-h-[720px] object-contain drop-shadow-[0_25px_60px_rgba(0,0,0,0.9)] transition-transform duration-1000 hover:scale-[1.01]"
+            loading="eager"
+          />
+        </div>
+      </div>
 
-          <h1 class="hero-title font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-            <span data-gsap="hero-line-1">Your everyday.</span><br />
-            <span class="shimmer-gold" data-gsap="hero-line-2">A little more luxurious.</span>
-          </h1>
-
-          <p class="hero-subtitle text-lg md:text-xl text-gold-light font-accent italic" data-gsap="hero-sub">
-            Your skin deserves its own kind of luxury.
+      <!-- Grandeur Editorial Storytelling & CTA -->
+      <div class="max-w-4xl mx-auto px-6 text-center space-y-4 relative z-10" data-gsap="hero-text">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/25 mx-auto">
+          <span class="w-1.5 h-1.5 rounded-full bg-gold animate-ping"></span>
+          <p class="hero-label text-[11px] md:text-xs tracking-[0.25em] text-gold-light font-medium uppercase">
+            Handcrafted Cold-Process Bathing Soaps
           </p>
-
-          <p class="hero-body text-skin-muted max-w-lg leading-relaxed text-sm md:text-base" data-gsap="hero-body">
-            Four signature cold-process bars. Four sensory escapes crafted with pure botanicals, nourishing Kokum butter, and rare essential essences. Handcrafted with care and inspired by nature.
-          </p>
-
-          <div class="hero-cta pt-2" data-gsap="hero-cta">
-            <a href="#collection"
-               class="inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-gold to-gold-light text-plum font-semibold rounded-full hover:brightness-110 transition-all duration-300 shadow-lg shadow-gold/20 text-sm md:text-base group">
-              <span>Explore the Collection</span>
-              <span class="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
-            </a>
-          </div>
         </div>
 
-        <!-- Hero 3D Render Presentation — 6 cols -->
-        <div class="hero-image lg:col-span-6 relative flex justify-center items-center" data-gsap="hero-image">
-          <!-- Multi-tier radial pedestal aura -->
-          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <div class="w-[95%] h-[95%] rounded-full bg-gradient-to-br from-gold/15 to-[#421d37]/40 blur-[90px]"></div>
-          </div>
-          <div class="relative z-10 w-full max-w-lg lg:max-w-2xl flex justify-center">
-            <img
-              src="assets/images/newface-blended.png"
-              alt="GlowSwan collection — four handcrafted cold-process soap bars staged on travertine pedestals"
-              class="w-full h-auto object-contain transition-transform duration-700 hover:scale-[1.02] drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
-              loading="eager"
-            />
-          </div>
+        <h1 class="hero-title font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight">
+          <span data-gsap="hero-line-1">Your everyday.</span>
+          <span class="shimmer-gold block sm:inline sm:ml-2" data-gsap="hero-line-2">A little more luxurious.</span>
+        </h1>
+
+        <p class="hero-subtitle text-lg md:text-xl text-gold-light font-accent italic" data-gsap="hero-sub">
+          Your skin deserves its own kind of luxury.
+        </p>
+
+        <p class="hero-body text-skin-muted max-w-xl mx-auto leading-relaxed text-sm md:text-base" data-gsap="hero-body">
+          Four signature cold-process bars. Four sensory escapes crafted with pure botanicals, nourishing Kokum butter, and rare essential essences. Handcrafted with care and inspired by nature.
+        </p>
+
+        <div class="hero-cta pt-3 flex flex-wrap items-center justify-center gap-4" data-gsap="hero-cta">
+          <a href="#collection"
+             class="inline-flex items-center gap-3 px-8 py-3.5 bg-gradient-to-r from-gold to-gold-light text-plum font-semibold rounded-full hover:brightness-110 transition-all duration-300 shadow-lg shadow-gold/20 text-sm md:text-base group">
+            <span>Explore the Collection</span>
+            <span class="transition-transform duration-300 group-hover:translate-y-0.5">↓</span>
+          </a>
+          <a href="https://wa.me/919894046703?text=Hi!%20I'm%20interested%20in%20GlowSwan%20soaps.%20Please%20share%20details."
+             target="_blank" rel="noopener noreferrer"
+             class="inline-flex items-center gap-2 px-6 py-3.5 border border-gold/40 text-gold-light hover:border-gold hover:text-gold rounded-full text-sm font-semibold transition-all duration-300">
+            <span>Order on WhatsApp</span>
+            <span>💬</span>
+          </a>
         </div>
       </div>
     </section>
